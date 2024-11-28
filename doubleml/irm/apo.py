@@ -284,9 +284,7 @@ class DoubleMLAPO(LinearScoreMixin, DoubleML):
             m_hat_adj = _normalize_ipw(m_hat, treated)
         else:
             m_hat_adj = m_hat
-
-        print(y)
-        print(g_hat1)
+        
         u_hat = y - g_hat1
         weights, weights_bar = self._get_weights()
         psi_b = weights * g_hat1 + weights_bar * np.divide(np.multiply(treated, u_hat), m_hat_adj)
