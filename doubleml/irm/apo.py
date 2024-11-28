@@ -202,11 +202,11 @@ class DoubleMLAPO(LinearScoreMixin, DoubleML):
         return weights, weights_bar
 
     def _nuisance_est(self, smpls, n_jobs_cv, external_predictions, return_models=False):
-        x, y = check_X_y(self._dml_data.x, self._dml_data.y,
-                         force_all_finite=False)
+        # x, y = check_X_y(self._dml_data.x, self._dml_data.y, force_all_finite=False)
+        x, y = self._dml_data.x, self._dml_data.y
         # use the treated indicator to get the correct sample splits
-        x, treated = check_X_y(x, self.treated,
-                               force_all_finite=False)
+        # x, treated = check_X_y(x, self.treated, force_all_finite=False)
+        x, treated = x, self.treated
 
         # get train indices for d == treatment_level
         smpls_d0, smpls_d1 = _get_cond_smpls(smpls, treated)
